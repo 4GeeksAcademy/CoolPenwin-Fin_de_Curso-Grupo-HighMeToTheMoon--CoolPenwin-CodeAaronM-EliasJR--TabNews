@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	let url_newspaper = process.env.BACKEND_URL + "/api/newspaper"
 	return {
 		store: {
 			message: null,
@@ -13,6 +14,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
+			],
+			Newspapers:[
+
 			]
 		},
 		actions: {
@@ -46,7 +50,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+			getData: () => {
+                fetch(url_newspaper)
+                    .then(response => response.json())
+                    .then(data => {
+                        setStore({ Newspapers: data });
+                        console.log("data de dev");
+                        console.log(data.results);
+                    })
+                    .catch(error => console.error("Error fetching Newspapers:", error));
+            }
 		}
 	};
 };

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { CardNewspaper } from "../component/Newspaperes";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -9,9 +10,20 @@ export const Home = () => {
 	return (
 		<div className="text-center mt-5">
 			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
+			<h1 className="text-danger"> <h1 className="text-danger">Newspapers</h1>
+
+            <div className="row d-flex flex-nowrap my-5" style={{ overflowX: "scroll" }}>
+                {store.Newspapers.map((newspaper, index) => <CardNewspaper key={index}
+
+                    name={newspaper.name}
+                    description={newspaper.description}
+                    logo={newspaper.logo} 
+                    link={newspaper.link}
+
+                />)}
+            </div></h1>
+
+
 			<div className="alert alert-info">
 				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
 			</div>
