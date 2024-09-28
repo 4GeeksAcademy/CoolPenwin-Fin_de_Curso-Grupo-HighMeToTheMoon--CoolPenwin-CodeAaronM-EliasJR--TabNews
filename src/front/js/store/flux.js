@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	let url_author = process.env.BACKEND_URL + "/api/author"
 	return {
 		store: {
 			message: null,
@@ -13,12 +14,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			Authors: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			},
+			getData: () => {
+				fetch(url_author)
+					.then(response => response.json())
+					.then(data => {
+						setStore({ Authors: data.results });
+						console.log("data de dev");
+						console.log(data.results);
+					})
+					.catch(error => console.error("Error fetching Authors:", error));
 			},
 
 			getMessage: async () => {
