@@ -13,7 +13,7 @@ export const CardAuthor = (props) => {
   <img src={rigoImage} className="card-img-top" alt="..."/>
   <div className="card-body">
     <h5 className="card-title">{props.name}</h5>
-    <p className="card-text m-0">Gender:{props.description}</p>
+    <p className="card-text m-0">description: {props.description}</p>
     <p className="card-text m-0">Hair color:{props.photo}</p>
   </div>
 </div>
