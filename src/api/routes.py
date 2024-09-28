@@ -101,3 +101,24 @@ def update_author(author_id):
         db.session.commit()
 
     return jsonify({'message': f'Usuario con id {author_id} ha sido actualizado correctamente'}), 200
+
+# Proteger las rutas con JWT (Ejemplo de uso)
+@api.route('/protected', methods=['GET'])
+@jwt_required()
+def protected_route():
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
+
+# Crear un token de acceso (Ejemplo de login)
+@api.route('/login', methods=['POST'])
+def login():
+    username = request.json.get('username', None)
+    password = request.json.get('password', None)
+
+    # Validación de usuario (aquí se debe conectar con la base de datos)
+    if username != 'test' or password != 'test':
+        return jsonify({"msg": "Bad username or password"}), 401
+
+    # Crear un token de acceso
+    access_token = create_access_token(identity=username)
+    return jsonify(access_token=access_token), 200

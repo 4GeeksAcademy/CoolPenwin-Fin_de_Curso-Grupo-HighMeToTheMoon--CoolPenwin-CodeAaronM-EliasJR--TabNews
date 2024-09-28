@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(url_author)
 					.then(response => response.json())
 					.then(data => {
-						setStore({ Authors: data.results });
+						setStore({ Authors: data });
 						console.log("data de dev");
 						console.log(data.results);
 					})
