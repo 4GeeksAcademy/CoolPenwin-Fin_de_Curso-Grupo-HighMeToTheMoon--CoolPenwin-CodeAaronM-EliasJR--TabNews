@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			Authors: []
+			Authors: [],
+			temp: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -32,6 +33,65 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("Error fetching Authors:", error));
 			},
+
+//---------------------------------------
+
+			addAuthor: (props) => {
+				const actions = getActions()
+				const store = getStore();
+				if (store.temp.length === 0) {
+					const requestOptions = {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							'name': props.name,
+							'description': props.description,
+							'photo': props.photo
+						})
+					}
+					fetch(url_author, requestOptions)
+						.then((Response) => Response.json())
+						.then(() => actions.getData())
+						.catch((error) => {
+							console.error("Error fetching the data:", error);
+						});
+				} else {
+					actions.changeAuthor(props)
+				}
+			},
+			deleteAuthor: (props) => {
+				const actions = getActions()
+				console.log("you are going to delete " + props)
+				fetch(url_author+props, { method: 'DELETE' })
+					.then(() => { actions.getData() });
+
+			},
+			changeAuthor: (props) => {
+				const store = getStore();
+				const requestOptions = {
+					method: 'PUT',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						'name': props.name,
+						'description': props.description,
+						'photo': props.photo
+					}),
+					redirect: "follow"
+				};
+				fetch(url_author+store.temp.id, requestOptions)
+					.then(response => response.json())
+					.then(data => {
+						actions.getData()
+						setStore({ temp: [] })
+					});
+
+			},
+			setid: (props) => {
+				setStore({ temp: props })
+				console.log(props)
+			},
+
+//---------------------------------------
 
 			getMessage: async () => {
 				try{
