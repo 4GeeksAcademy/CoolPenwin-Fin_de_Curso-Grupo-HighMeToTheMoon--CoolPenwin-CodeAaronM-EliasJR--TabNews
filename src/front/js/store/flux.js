@@ -1,5 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	let url_author = process.env.BACKEND_URL + "/api/author"
+	let url_author = process.env.BACKEND_URL + "api/author/"
 	return {
 		store: {
 			message: null,
@@ -68,6 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			changeAuthor: (props) => {
 				const store = getStore();
+				const actions = getActions()
 				const requestOptions = {
 					method: 'PUT',
 					headers: { 'Content-Type': 'application/json' },
