@@ -24,6 +24,7 @@ export const Author = () => {
 					name={author.name}
 					description={author.description}
 					photo={author.photo}
+					id={author.id}
 
 				/>)}
 			</div>

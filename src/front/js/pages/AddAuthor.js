@@ -11,6 +11,7 @@ export const AddAuthor = () => {
 	const [name, setname] = useState("")
 	const [description, setdescription] = useState("")
 	const [photo, setphoto] = useState("")
+	const [id, setid] = useState("")
 
 	useEffect(() => {
 		if (store.temp.length === 0) {
@@ -19,6 +20,7 @@ export const AddAuthor = () => {
 			setname(store.temp.name)
 			setdescription(store.temp.description)
 			setphoto(store.temp.photo)
+			setid(store.temp.id)
 		}
 	}, [store.temp.name, store.temp.description, store.temp.photo])
 
@@ -42,7 +44,7 @@ export const AddAuthor = () => {
     <input type="email" class="form-control" id="photo" aria-describedby="emailHelp" value={photo} onChange={(e) => (setphoto(e.target.value))}/>
   </div>
 </form>
-<button className="btn btn-primary" onClick={(e) => { e.preventDefault(); actions.addAuthor({ name, description, photo}); }}>Save</button>
+<button className="btn btn-primary" onClick={(e) => { e.preventDefault(); actions.addAuthor({ name, description, photo, id}); }}>Save</button>
 					<Link to="/">
 						get back to home
 					</Link>

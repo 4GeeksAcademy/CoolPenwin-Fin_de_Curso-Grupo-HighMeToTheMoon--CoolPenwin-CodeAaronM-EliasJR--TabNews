@@ -82,6 +82,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						actions.getData()
+						console.log(store.temp.id)
 						setStore({ temp: [] })
 					});
 
