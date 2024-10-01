@@ -5,18 +5,29 @@ import "../../styles/home.css";
 import { CardAuthor } from "../component/cardAuthor";
 import { Link } from "react-router-dom";
 
-export const Home = () => {
+
+export const Author = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="text-center mt-5">
 			<h1>Hello Rigo!!</h1>
 			<h1 className="text-danger">Authors</h1>
-			<Link to="/author">
-			<h1>ir a author</h1>
+
+			<Link to="/AddAuthor">
+			<button>crear author</button>
 					</Link>
 
+			<div className="row d-flex flex-nowrap my-5" style={{ overflowX: "scroll" }}>
+				{store.Authors.map((author, index) => <CardAuthor key={index}
 
+					name={author.name}
+					description={author.description}
+					photo={author.photo}
+					id={author.id}
+
+				/>)}
+			</div>
 			<div className="alert alert-info">
 				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
 			</div>
