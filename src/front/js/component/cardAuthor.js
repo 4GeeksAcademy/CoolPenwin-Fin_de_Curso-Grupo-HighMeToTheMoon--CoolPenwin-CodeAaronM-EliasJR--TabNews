@@ -14,6 +14,7 @@ export const CardAuthor = (props) => {
 <Link to="/AddAuthor">
 <button type="button" className="btn btn-outline-light text-secondary" onClick={() => actions.setid(props)}><i className="fa-solid fa-pencil"></i></button>
 </Link>
+<button type="button" className="btn btn-primary" onClick={() => actions.deleteAuthor(props.id)}>DELETE</button>
     <h5 className="card-title">{props.name}</h5>
     <p className="card-text m-0">description: {props.description}</p>
     <p className="card-text m-0">Hair color:{props.photo}</p>
