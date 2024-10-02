@@ -7,7 +7,7 @@ import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
-
+import { Category } from "./pages/category"
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Author } from "./pages/Author";
@@ -32,6 +32,7 @@ const Layout = () => {
                         <Route element={<AddAuthor />} path="/AddAuthor" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Category />} path="/category" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
